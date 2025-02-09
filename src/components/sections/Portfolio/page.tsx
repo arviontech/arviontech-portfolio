@@ -71,7 +71,7 @@ export default function Portfolio() {
           <p className="text-xl text-muted-foreground">Showcasing our latest projects and innovations</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {projects.map((project, index) => (
             <Card key={index} className="portfolio-card group overflow-hidden">
               <div className="relative aspect-video overflow-hidden">

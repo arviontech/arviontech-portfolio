@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { BrainCircuit, Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import Image from 'next/image';
 
 const navigation = {
   solutions: [
@@ -40,10 +41,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <BrainCircuit className="h-8 w-8 text-primary glow-text" />
-              <span className="text-xl font-bold glow-text">Arvion Tech</span>
-            </Link>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="https://i.ibb.co.com/vx1tyMy9/Tech-brand-3.png"
+              alt="Arvion Tech Logo"
+              width={32}
+              height={32}
+              className="h-12 w-36"
+            />
+          </Link>
             <p className="mt-4 text-muted-foreground max-w-md">
               Empowering businesses with cutting-edge technology solutions. 
               Building the future of digital innovation, one project at a time.
@@ -101,7 +107,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-muted">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © 2024 TechCorp. All rights reserved.
+              © 2025 ArvionTech. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               {navigation.social.map((item) => {
