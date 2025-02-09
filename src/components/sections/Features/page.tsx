@@ -103,7 +103,7 @@ export default function Features() {
           });
         });
       });
-
+//@ts-ignore
       function handleMouseMove(e) {
         const card = e.currentTarget;
         const content = card.querySelector('.card-content');
