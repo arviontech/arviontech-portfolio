@@ -16,6 +16,7 @@ import {
   Globe,
   Layers
 } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +31,7 @@ export default function Hero() {
       if (heroRef.current) {
         const width = heroRef.current.offsetWidth;
         const height = heroRef.current.offsetHeight;
-        const cellSize = 40; // Size of each grid cell
+        const cellSize = 40;
         const cols = Math.ceil(width / cellSize);
         const rows = Math.ceil(height / cellSize);
         setGridDimensions({ rows, cols });
@@ -41,6 +42,15 @@ export default function Hero() {
     window.addEventListener('resize', updateGridDimensions);
 
     const ctx = gsap.context(() => {
+      // Background image zoom animation
+      gsap.to(".bg-image", {
+        scale: 1.1,
+        duration: 20,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+      });
+
       gsap.from(titleRef.current, {
         y: 100,
         opacity: 0,
@@ -99,12 +109,12 @@ export default function Hero() {
         Math.pow(mouseY - cellCenterY, 2)
       );
 
-      const maxDistance = 150; // Increased range of effect
+      const maxDistance = 150;
       const opacity = Math.max(0, 1 - distance / maxDistance);
       
       gsap.to(cell, {
-        opacity: 0.1 + opacity * 2, // Increased maximum opacity
-        scale: 1 + opacity * 0.2, // Increased scale effect
+        opacity: 0.2 + opacity * 0.8,
+        scale: 1 + opacity * 0.4,
         duration: 0.3,
         ease: "power2.out"
       });
@@ -156,11 +166,26 @@ export default function Hero() {
 
   return (
     <section 
+      id="home"
       ref={heroRef} 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Background Image */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="bg-image absolute inset-0 w-full h-full">
+          <Image 
+            src="https://i.ibb.co.com/8LypvHzP/annie-spratt-sggw4-q-DD54-unsplash.jpg" 
+            alt="Background" 
+            className=" object-cover opacity-100"
+            width={1920}
+            height={480}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background to-secondary/20" />
+      </div>
+
       {/* Background Grid */}
       <div 
         className="absolute inset-0 grid"
@@ -172,7 +197,7 @@ export default function Hero() {
         {Array.from({ length: gridDimensions.rows * gridDimensions.cols }).map((_, i) => (
           <div
             key={i}
-            className="grid-cell bg-primary/5 border border-primary/10 transition-all duration-300"
+            className="grid-cell bg-blue-200/10 border border-primary/10 transition-all duration-300"
           />
         ))}
       </div>
@@ -182,7 +207,7 @@ export default function Hero() {
       
       <div className="container mx-auto px-4 py-32 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 ref={titleRef} className="text-6xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+          <h1 ref={titleRef} className="text-6xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-300">
             Transforming Ideas Into Digital Reality
           </h1>
           

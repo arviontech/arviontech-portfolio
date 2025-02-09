@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/src/components/ui/button';
-import { BrainCircuit, Menu, X } from 'lucide-react';
+import {  Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -27,15 +28,21 @@ export default function Header() {
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-transparent backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <BrainCircuit className="h-8 w-8 text-primary glow-text" />
-            <span className="text-xl font-bold glow-text">Arvion Tech</span>
-          </Link>
+  <Image
+    src="https://i.ibb.co.com/vx1tyMy9/Tech-brand-3.png"
+    alt="Arvion Tech Logo"
+    width={32}
+    height={32}
+    className="h-12 w-36"
+  />
+  
+</Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -43,12 +50,12 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="nav-link text-foreground/90 hover:text-primary transition-colors"
+                className="nav-link text-foreground/90 hover:text-[#127ddd] transition-colors"
               >
                 {item.name}
               </Link>
             ))}
-            <Button className="glow">Get Started</Button>
+            <Button className="glow bg-[#127ddd]">Get Started</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -66,7 +73,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4">
+          <div className="md:hidden py-4 bg-gray-950">
             <div className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link

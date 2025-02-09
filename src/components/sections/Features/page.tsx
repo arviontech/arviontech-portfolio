@@ -4,40 +4,47 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card } from '@/src/components/ui/card';
-import { Code2, Cpu, Globe2, Lock, Palette, Zap } from 'lucide-react';
+import { 
+  ShoppingBag, 
+  Layout, 
+  BoxesIcon, 
+  Building2, 
+  GraduationCap,
+  Calendar 
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
-    icon: <Code2 className="h-12 w-12" />,
-    title: "Custom Development",
-    description: "Tailored software solutions built with cutting-edge technologies"
+    icon: <ShoppingBag className="h-12 w-12" />,
+    title: "E-Commerce Solutions",
+    description: "Custom online stores with secure payment gateways, inventory tracking, and customer management"
   },
   {
-    icon: <Globe2 className="h-12 w-12" />,
-    title: "Web Applications",
-    description: "Responsive and scalable web applications for modern businesses"
+    icon: <Layout className="h-12 w-12" />,
+    title: "Portfolio Websites",
+    description: "Professional portfolio sites with modern designs to showcase your work and attract clients"
   },
   {
-    icon: <Cpu className="h-12 w-12" />,
-    title: "AI Solutions",
-    description: "Intelligent systems powered by machine learning and AI"
+    icon: <BoxesIcon className="h-12 w-12" />,
+    title: "Inventory Management",
+    description: "Comprehensive systems to track stock, manage orders, and optimize your supply chain"
   },
   {
-    icon: <Lock className="h-12 w-12" />,
-    title: "Cyber Security",
-    description: "Advanced security measures to protect your digital assets"
+    icon: <Building2 className="h-12 w-12" />,
+    title: "Business Management",
+    description: "Complete business automation solutions including CRM, billing, and reporting systems"
   },
   {
-    icon: <Zap className="h-12 w-12" />,
-    title: "Cloud Services",
-    description: "Scalable cloud solutions for optimal performance"
+    icon: <GraduationCap className="h-12 w-12" />,
+    title: "Learning Management",
+    description: "Online education platforms with course management, student tracking, and assessment tools"
   },
   {
-    icon: <Palette className="h-12 w-12" />,
-    title: "UI/UX Design",
-    description: "Beautiful and intuitive interfaces that users love"
+    icon: <Calendar className="h-12 w-12" />,
+    title: "Booking Systems",
+    description: "Appointment scheduling and reservation systems for services and consultations"
   }
 ];
 
@@ -46,6 +53,7 @@ export default function Features() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Initial entrance animation
       gsap.from(".feature-card", {
         y: 60,
         opacity: 0,
@@ -58,27 +66,87 @@ export default function Features() {
           toggleActions: "play none none reverse"
         }
       });
+
+      // 3D hover animation setup
+      const cards = document.querySelectorAll('.feature-card');
+      
+      cards.forEach(card => {
+        const content = card.querySelector('.card-content');
+        
+        gsap.set(content, {
+          transformStyle: "preserve-3d",
+          transformPerspective: 1000,
+        });
+
+        card.addEventListener('mouseenter', (e) => {
+          gsap.to(card, {
+            boxShadow: "0 10px 30px -10px rgba(var(--primary), 0.5)",
+            duration: 0.3
+          });
+          
+          card.addEventListener('mousemove', handleMouseMove);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.removeEventListener('mousemove', handleMouseMove);
+          
+          gsap.to(content, {
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.7,
+            ease: "elastic.out(1, 0.7)"
+          });
+          
+          gsap.to(card, {
+            boxShadow: "none",
+            duration: 0.3
+          });
+        });
+      });
+
+      function handleMouseMove(e) {
+        const card = e.currentTarget;
+        const content = card.querySelector('.card-content');
+        const rect = card.getBoundingClientRect();
+        
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        
+        const rotateX = (mouseY - rect.height / 2) / 10;
+        const rotateY = -(mouseX - rect.width / 2) / 10;
+        
+        gsap.to(content, {
+          rotationX: rotateX,
+          rotationY: rotateY,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-secondary/30">
+    <section id="services" ref={sectionRef} className="py-32 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-xl text-muted-foreground">Comprehensive solutions for your digital needs</p>
+          <h2 className="text-4xl font-bold mb-4">Web Development Services</h2>
+          <p className="text-xl text-muted-foreground">Specialized solutions for your online business needs</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="feature-card p-6 hover:shadow-lg transition-shadow">
-              <div className="text-primary mb-4">
-                {feature.icon}
+            <Card 
+              key={index} 
+              className="feature-card p-6 transition-shadow duration-300 cursor-pointer overflow-hidden"
+            >
+              <div className="card-content">
+                <div className="text-primary mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
             </Card>
           ))}
         </div>

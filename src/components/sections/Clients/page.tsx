@@ -75,7 +75,7 @@ export default function Clients() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32">
+    <section  id="clients" ref={sectionRef} className="py-32">
       <div className="container mx-auto px-4">
         <div className="testimonials-container mb-24">
           <div className="text-center mb-16">

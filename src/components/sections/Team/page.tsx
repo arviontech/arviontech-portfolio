@@ -79,7 +79,7 @@ export default function Team() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-secondary/20">
+    <section id ="team" ref={sectionRef} className="py-32 bg-secondary/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Team</h2>

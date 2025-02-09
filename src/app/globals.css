@@ -4,25 +4,38 @@
 
 @layer base {
   :root {
-    --background: 230 30% 10%;
+    --background: 220 30% 10%;
     --foreground: 210 40% 98%;
-    --card: 230 30% 15%;
+    
+    /* Card and Popover - slightly lighter than background */
+    --card: 220 30% 15%;
     --card-foreground: 210 40% 98%;
-    --popover: 230 30% 15%;
+    --popover: 220 30% 15%;
     --popover-foreground: 210 40% 98%;
-    --primary: 160 100% 50%;
-    --primary-foreground: 230 30% 10%;
-    --secondary: 217 100% 50%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 230 30% 20%;
+    
+    /* Primary - #044cac (deep blue) */
+    --primary: 215 96% 34%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - #6c34f4 (purple) */
+    --secondary: 258 89% 58%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Accent - #127ddd (bright blue) */
+    --accent: 209 84% 47%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Supporting colors */
+    --muted: 220 30% 20%;
     --muted-foreground: 210 40% 70%;
-    --accent: 291 100% 50%;
-    --accent-foreground: 210 40% 98%;
+    
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
-    --border: 230 30% 20%;
-    --input: 230 30% 20%;
-    --ring: 160 100% 50%;
+    
+    --border: 220 30% 20%;
+    --input: 220 30% 20%;
+    --ring: 215 96% 34%;
+    
     --radius: 0.5rem;
   }
 }
@@ -43,14 +56,18 @@
   mask-image: radial-gradient(black, transparent);
 }
 
+/* Updated glow effects with new primary color */
 .glow {
-  box-shadow: 0 0 20px theme(colors.primary.DEFAULT / 20%);
+  box-shadow: 0 0 20px theme(colors.primary.DEFAULT / 30%),
+              0 0 40px theme(colors.accent.DEFAULT / 20%);
 }
 
 .glow-text {
-  text-shadow: 0 0 10px theme(colors.primary.DEFAULT / 50%);
+  text-shadow: 0 0 10px theme(colors.primary.DEFAULT / 50%),
+               0 0 20px theme(colors.accent.DEFAULT / 30%);
 }
 
+/* Enhanced floating animation */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -67,6 +84,7 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Enhanced navigation link styles */
 .nav-link {
   position: relative;
 }
@@ -78,10 +96,49 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: hsl(var(--primary));
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 50%,
+    hsl(var(--accent)) 100%
+  );
   transition: width 0.3s ease;
 }
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Button gradient styles */
+.btn-gradient {
+  background: linear-gradient(
+    135deg,
+    #044cac 0%,
+    #6c34f4 50%,
+    #127ddd 100%
+  );
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(
+    135deg,
+    #033c8a 0%,
+    #5c2ad4 50%,
+    #0f69bd 100%
+  );
+  transform: translateY(-2px);
+}
+
+/* Custom gradient text utility */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #044cac 0%,
+    #6c34f4 50%,
+    #127ddd 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
