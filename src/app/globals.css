@@ -2,20 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 230 30% 10%;
+    --foreground: 210 40% 98%;
+    --card: 230 30% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 230 30% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 160 100% 50%;
+    --primary-foreground: 230 30% 10%;
+    --secondary: 217 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 230 30% 20%;
+    --muted-foreground: 210 40% 70%;
+    --accent: 291 100% 50%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 230 30% 20%;
+    --input: 230 30% 20%;
+    --ring: 160 100% 50%;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.bg-grid-pattern {
+  background-size: 100px 100px;
+  background-image: linear-gradient(to right, theme(colors.white/5) 1px, transparent 1px),
+    linear-gradient(to bottom, theme(colors.white/5) 1px, transparent 1px);
+  mask-image: radial-gradient(black, transparent);
+}
+
+.glow {
+  box-shadow: 0 0 20px theme(colors.primary.DEFAULT / 20%);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px theme(colors.primary.DEFAULT / 50%);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: hsl(var(--primary));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }

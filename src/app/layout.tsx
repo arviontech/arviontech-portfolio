@@ -12,8 +12,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Hospital Management System",
-  description: "Patient care and management platform",
+  title: "Arivion Tech",
+  description: "Leading Software Company in Bangladesh",
 };
 
 export default function RootLayout({
