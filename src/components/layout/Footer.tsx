@@ -8,10 +8,12 @@ import Image from 'next/image';
 
 const navigation = {
   solutions: [
-    { name: 'Web Development', href: '#' },
-    { name: 'Mobile Apps', href: '#' },
-    { name: 'Cloud Services', href: '#' },
-    { name: 'AI Solutions', href: '#' },
+    { name: 'E-Commerce Solutions', href: '#' },
+    { name: 'Portfolio Websites', href: '#' },
+    { name: 'Inventory Management', href: '#' },
+    { name: 'Business Management', href: '#' },
+    { name: 'Learning Management', href: '#' },
+    { name: 'Booking Management', href: '#' },
   ],
   company: [
     { name: 'About', href: '#' },
@@ -36,7 +38,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-card mt-32">
+    <footer className="bg-card  mt-32">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
