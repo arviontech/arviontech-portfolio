@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Card } from '@/src/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/src/components/ui/button';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);

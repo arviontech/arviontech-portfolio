@@ -1,8 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { BrainCircuit, Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 

@@ -4,8 +4,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Card } from '@/src/components/ui/card';
-import { Button } from '@/src/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);

@@ -4,7 +4,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Card } from '@/src/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
